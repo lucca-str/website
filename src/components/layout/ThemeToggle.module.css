@@ -1,0 +1,30 @@
+/*
+ * The toggle icon, drawn like the original: a dot with a circular mask. In light mode
+ * the mask's hole sits off the dot (a full dot); in dark mode it slides onto it and
+ * leaves a crescent moon. The registered properties let the mask position animate.
+ */
+@property --moon-x {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 146.6%;
+}
+
+@property --moon-y {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: -4.6%;
+}
+
+.moon {
+  --moon-x: 146.6%;
+  --moon-y: -4.6%;
+  mask: radial-gradient(50% 50% at var(--moon-x) var(--moon-y), transparent 99.99%, #000 100%);
+  transition:
+    --moon-x var(--spring-snappy-duration) var(--spring-snappy-easing),
+    --moon-y var(--spring-snappy-duration) var(--spring-snappy-easing);
+}
+
+:global([data-theme='dark']) .moon {
+  --moon-x: 92%;
+  --moon-y: 22.2%;
+}

@@ -1,0 +1,148 @@
+/*
+ * Text styles — one utility per Framer text preset, values copied from the live CSS.
+ *
+ * Like Framer, a style never changes by itself per breakpoint; an element switches
+ * style instead, e.g. `type-title tablet:type-statement` (see docs/design-tokens.md).
+ * Each style also sets --paragraph-spacing, which `rich-text` uses between blocks.
+ */
+
+@utility type-display {
+  font-family: var(--font-display);
+  font-size: 80px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  --paragraph-spacing: 40px;
+}
+
+@utility type-statement {
+  font-family: var(--font-display);
+  font-size: 48px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  --paragraph-spacing: 40px;
+}
+
+@utility type-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  --paragraph-spacing: 0px;
+}
+
+@utility type-section {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  --paragraph-spacing: 40px;
+}
+
+@utility type-logo {
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.18px;
+}
+
+@utility type-card {
+  font-family: var(--font-ui);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  --paragraph-spacing: 40px;
+}
+
+@utility type-accordion {
+  font-family: var(--font-ui);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: 0;
+  --paragraph-spacing: 20px;
+}
+
+@utility type-button {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+@utility type-input {
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@utility type-meta {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0;
+  --paragraph-spacing: 20px;
+}
+
+@utility type-body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0;
+  --paragraph-spacing: 16px;
+}
+
+@utility type-body-center {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+  --paragraph-spacing: 20px;
+}
+
+@utility type-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.03px;
+}
+
+/* Rich text from content files: paragraph gaps, Framer-style bullet lists, bold. */
+@utility rich-text {
+  & > * + * {
+    margin-top: var(--paragraph-spacing, 16px);
+  }
+  /* Framer gives lists no paragraph gap above them (the paragraph after a list keeps its gap). */
+  & > ul {
+    margin-top: 0;
+  }
+  & strong {
+    font-weight: 700;
+  }
+  & ul {
+    padding-left: 3ch;
+  }
+  & li {
+    position: relative;
+  }
+  & li::before {
+    content: '\2022';
+    position: absolute;
+    left: -3ch;
+  }
+  & ul > li > p + p,
+  & li + li {
+    margin-top: 0;
+  }
+}

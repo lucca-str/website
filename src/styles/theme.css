@@ -1,0 +1,83 @@
+/*
+ * Design tokens — values copied from the live Framer site (see docs/design-tokens.md).
+ *
+ * Light is the default. Dark applies when the head script in src/lib/theme.ts sets
+ * <html data-theme="dark">, or — for visitors without JavaScript — when the OS prefers dark.
+ * Components only ever use the Tailwind utilities generated from these tokens
+ * (bg-bg, text-fg, text-fg-subtle, border-line, …), so both themes work everywhere.
+ */
+
+:root {
+  color-scheme: light;
+  --bg: #f8fafb;
+  --fg: #111111;
+  --fg-muted: rgb(0 0 0 / 0.75);
+  --fg-subtle: rgb(17 17 17 / 0.5);
+  --line: rgb(171 171 171 / 0.15);
+}
+
+/* The dark values appear twice: once for the explicit choice, once for no-JS visitors. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #050505;
+  --fg: #ffffff;
+  --fg-muted: rgb(255 255 255 / 0.75);
+  --fg-subtle: rgb(255 255 255 / 0.5);
+  --line: rgb(255 255 255 / 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg: #050505;
+    --fg: #ffffff;
+    --fg-muted: rgb(255 255 255 / 0.75);
+    --fg-subtle: rgb(255 255 255 / 0.5);
+    --line: rgb(255 255 255 / 0.15);
+  }
+}
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+@theme {
+  /* Only design tokens exist — no default Tailwind palette, fonts or breakpoints. */
+  --color-*: initial;
+  --font-*: initial;
+  --breakpoint-*: initial;
+
+  /* Framer's breakpoints: base styles are phone (< 810px). */
+  --breakpoint-tablet: 810px;
+  --breakpoint-desktop: 1200px;
+
+  --radius-media: 6px; /* case-study images and videos */
+  --radius-tile: 12px; /* project tile images (Home, Work) */
+  --radius-field: 8px; /* form inputs */
+
+  --shadow-tile: 0 1px 2px 0 rgb(0 0 0 / 0.25);
+  /* Framer's layered soft shadow on pill buttons */
+  --shadow-pill:
+    0 0.482px 0.482px -1.5px rgb(0 0 0 / 0.17), 0 1.831px 1.831px -3px rgb(0 0 0 / 0.14),
+    0 8px 8px -4.5px rgb(0 0 0 / 0.02);
+  /* The deeper shadow on the contact form's Submit button */
+  --shadow-submit:
+    0 0.707px 0.707px -0.625px rgb(0 0 0 / 0.15), 0 1.807px 1.807px -1.25px rgb(0 0 0 / 0.145),
+    0 3.622px 3.622px -1.875px rgb(0 0 0 / 0.137), 0 6.866px 6.866px -2.5px rgb(0 0 0 / 0.125),
+    0 13.647px 13.647px -3.125px rgb(0 0 0 / 0.106), 0 30px 30px -3.75px rgb(0 0 0 / 0.05);
+
+  --ease-framer: cubic-bezier(0.44, 0, 0.56, 1);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-line: var(--line);
+  --color-surface-dark: #0f0e0e;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-hanken-grotesk);
+  --font-ui: var(--font-roboto);
+}
