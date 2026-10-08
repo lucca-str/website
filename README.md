@@ -13,6 +13,7 @@ Portfolio of Lucca Strecker, product designer. A faithful rebuild of the origina
 - **next/image + next/font**: optimized images and self-hosted Hanken Grotesk, Inter and Roboto
 - **Vercel**: hosting, image optimization and Web Analytics (cookieless)
 - **Web3Forms**: the contact form (no backend of our own)
+- 
 
 ## Getting started
 
