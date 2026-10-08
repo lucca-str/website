@@ -5,6 +5,7 @@ Portfolio of Lucca Strecker, product designer. A faithful rebuild of the origina
 
 ## Stack
 
+
 - **Next.js 16** (App Router, TypeScript): every page is prerendered at build time
 - **Tailwind CSS 4**: design tokens and text styles live in `src/styles/`
 - **Motion**: scroll reveals, word reveal, layout/drag animations; hovers use CSS with Framer's springs
